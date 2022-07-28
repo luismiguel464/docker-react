@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    # build: . ## looks at the Dockerfile within the container
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes: ## to have changes in the source code, immediately shown in the container
+      - /app/node_modules
+      - .:/app ## takes the current folder outside of the container into the app folder in the container
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
