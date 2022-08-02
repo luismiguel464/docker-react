@@ -3,7 +3,7 @@ sudo: required
 services:
   - docker
 
-// before the test are run
+# before the test are run
 before_install:
   - docker build -t luismiguel464/docker-react -f Dockerfile.dev .
 
